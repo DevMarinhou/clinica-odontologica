@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Odontológica — Usuários</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <div id="app-layout">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-outline-secondary botao-menu" id="btn-menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 id="titulo-pagina" class="titulo-pagina"></h1>
+        </div>
+        <div class="usuario-box">
+          <span id="usuario-logado" class="usuario-logado"></span>
+          <button class="btn btn-sm btn-outline-secondary" id="btn-sair">
+            <i class="bi bi-box-arrow-right"></i> Sair
+          </button>
+        </div>
+      </header>
+
+      <main class="area-conteudo">
+        <div class="card">
+          <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <h5 class="mb-0">Usuários do sistema</h5>
+              <small class="text-secondary"><span id="total-registros">0</span> registro(s) encontrado(s)</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <input id="campo-busca" type="search" class="form-control form-control-sm campo-busca"
+                     placeholder="Pesquisar por usuário ou nome...">
+              <button class="btn btn-sm btn-primary" id="btn-novo">
+                <i class="bi bi-plus-lg"></i> Novo usuário
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Nome completo</th>
+                  <th>Perfil</th>
+                  <th>Situação</th>
+                  <th>Cadastrado em</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="corpo-tabela"></tbody>
+            </table>
+          </div>
+          <div class="card-footer bg-white">
+            <small class="text-secondary">
+              <i class="bi bi-shield-lock"></i>
+              As senhas são gravadas no banco apenas como <strong>hash</strong> (criptografia irreversível) —
+              nem esta tela nem a API conseguem exibir a senha original.
+            </small>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= MODAL CADASTRO / EDIÇÃO ================= -->
+  <div class="modal fade" id="modal-usuario" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titulo-modal">Novo usuário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <form id="formulario-usuario" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="nome_usuario">Nome de usuário *</label>
+                <input id="nome_usuario" name="nome_usuario" class="form-control" maxlength="50" required
+                       placeholder="marina.recep" autocomplete="off">
+                <div class="invalid-feedback">Informe o nome de usuário (sem espaços).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="nome_completo">Nome completo *</label>
+                <input id="nome_completo" name="nome_completo" class="form-control" maxlength="100" required
+                       placeholder="Marina Souza">
+                <div class="invalid-feedback">Informe o nome completo.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="senha" id="rotulo-senha">Senha *</label>
+                <input id="senha" name="senha" type="password" class="form-control" minlength="6"
+                       autocomplete="new-password">
+                <div class="form-text" id="ajuda-senha">Mínimo de 6 caracteres.</div>
+                <div class="invalid-feedback">Informe uma senha com pelo menos 6 caracteres.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="perfil">Perfil *</label>
+                <select id="perfil" name="perfil" class="form-select" required>
+                  <option value="recepcao">Recepção</option>
+                  <option value="dentista">Dentista</option>
+                  <option value="financeiro">Financeiro</option>
+                  <option value="admin">Administrador</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="ativo" name="ativo" checked>
+                  <label class="form-check-label" for="ativo">Usuário ativo (pode fazer login)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/usuarios.js"></script>
+</body>
+</html>

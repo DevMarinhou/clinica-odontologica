@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Odontológica — Pacientes</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <div id="app-layout">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-outline-secondary botao-menu" id="btn-menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 id="titulo-pagina" class="titulo-pagina"></h1>
+        </div>
+        <div class="usuario-box">
+          <span id="usuario-logado" class="usuario-logado"></span>
+          <button class="btn btn-sm btn-outline-secondary" id="btn-sair">
+            <i class="bi bi-box-arrow-right"></i> Sair
+          </button>
+        </div>
+      </header>
+
+      <main class="area-conteudo">
+        <div class="card">
+          <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <h5 class="mb-0">Lista de pacientes</h5>
+              <small class="text-secondary"><span id="total-registros">0</span> registro(s) encontrado(s)</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <input id="campo-busca" type="search" class="form-control form-control-sm campo-busca"
+                     placeholder="Pesquisar por nome, CPF, e-mail...">
+              <button class="btn btn-sm btn-primary" id="btn-novo">
+                <i class="bi bi-plus-lg"></i> Novo paciente
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>CPF</th>
+                  <th>Nascimento</th>
+                  <th>Telefone</th>
+                  <th>Endereço</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="corpo-tabela"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= MODAL CADASTRO / EDIÇÃO ================= -->
+  <div class="modal fade" id="modal-paciente" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titulo-modal">Novo paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <form id="formulario-paciente" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label class="form-label" for="nome">Nome completo *</label>
+                <input id="nome" name="nome" class="form-control" maxlength="100" required>
+                <div class="invalid-feedback">Informe o nome do paciente.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="cpf">CPF *</label>
+                <input id="cpf" name="cpf" class="form-control" maxlength="14"
+                       placeholder="000.000.000-00" required>
+                <div class="invalid-feedback">Informe um CPF válido.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="data_nascimento">Data de nascimento *</label>
+                <input id="data_nascimento" name="data_nascimento" type="date" class="form-control" required>
+                <div class="invalid-feedback">Informe a data de nascimento.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="telefone">Telefone</label>
+                <input id="telefone" name="telefone" class="form-control" maxlength="20"
+                       placeholder="(11) 90000-0000">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="email">E-mail</label>
+                <input id="email" name="email" type="email" class="form-control" maxlength="100"
+                       placeholder="paciente@email.com">
+                <div class="invalid-feedback">Informe um e-mail válido.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="endereco">Endereço</label>
+                <input id="endereco" name="endereco" class="form-control" maxlength="150"
+                       placeholder="Rua, número, bairro - cidade/UF">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/pacientes.js"></script>
+</body>
+</html>

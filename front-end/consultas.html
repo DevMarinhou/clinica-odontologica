@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Odontológica — Consultas</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <div id="app-layout">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="conteudo">
+      <header class="topbar">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-outline-secondary botao-menu" id="btn-menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 id="titulo-pagina" class="titulo-pagina"></h1>
+        </div>
+        <div class="usuario-box">
+          <span id="usuario-logado" class="usuario-logado"></span>
+          <button class="btn btn-sm btn-outline-secondary" id="btn-sair">
+            <i class="bi bi-box-arrow-right"></i> Sair
+          </button>
+        </div>
+      </header>
+
+      <main class="area-conteudo">
+        <div class="card">
+          <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <h5 class="mb-0">Agenda de consultas</h5>
+              <small class="text-secondary"><span id="total-registros">0</span> consulta(s) encontrada(s)</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <input id="filtro-busca" type="search" class="form-control form-control-sm campo-busca"
+                     placeholder="Pesquisar paciente ou procedimento...">
+              <select id="filtro-status" class="form-select form-select-sm" style="width:auto;">
+                <option value="">Todos os status</option>
+                <option value="agendada">Agendada</option>
+                <option value="confirmada">Confirmada</option>
+                <option value="em_andamento">Em andamento</option>
+                <option value="concluida">Concluída</option>
+                <option value="cancelada">Cancelada</option>
+              </select>
+              <input id="filtro-data" type="date" class="form-control form-control-sm" style="width:auto;">
+              <button class="btn btn-sm btn-primary" id="btn-novo">
+                <i class="bi bi-plus-lg"></i> Nova consulta
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Data e hora</th>
+                  <th>Paciente</th>
+                  <th>Dentista</th>
+                  <th>Procedimento</th>
+                  <th>Status / Observações</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="corpo-tabela"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= MODAL AGENDAR / EDITAR ================= -->
+  <div class="modal fade" id="modal-consulta" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titulo-modal">Nova consulta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <form id="formulario-consulta" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="paciente_id">Paciente *</label>
+                <select id="paciente_id" name="paciente_id" class="form-select" required>
+                  <option value="">Carregando pacientes...</option>
+                </select>
+                <div class="invalid-feedback">Selecione o paciente.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="dentista_id">Dentista *</label>
+                <select id="dentista_id" name="dentista_id" class="form-select" required>
+                  <option value="">Carregando dentistas...</option>
+                </select>
+                <div class="invalid-feedback">Selecione o dentista.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="procedimento_id">Procedimento *</label>
+                <select id="procedimento_id" name="procedimento_id" class="form-select" required>
+                  <option value="">Carregando procedimentos...</option>
+                </select>
+                <div class="invalid-feedback">Selecione o procedimento.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="data_hora">Data e hora *</label>
+                <input id="data_hora" name="data_hora" type="datetime-local" class="form-control" required>
+                <div class="invalid-feedback">Informe a data e a hora da consulta.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="status">Status *</label>
+                <select id="status" name="status" class="form-select" required>
+                  <option value="agendada">Agendada</option>
+                  <option value="confirmada">Confirmada</option>
+                  <option value="em_andamento">Em andamento</option>
+                  <option value="concluida">Concluída</option>
+                  <option value="cancelada">Cancelada</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label class="form-label" for="observacoes">Observações</label>
+                <input id="observacoes" name="observacoes" class="form-control" maxlength="255"
+                       placeholder="Ex.: paciente reclamou de sensibilidade">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/consultas.js"></script>
+</body>
+</html>

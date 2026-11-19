@@ -1,0 +1,212 @@
+/* ==================================================================
+   Clinica Odontologica - Estilos proprios
+   Complementam o Bootstrap 5 (carregado localmente, sem internet)
+   ================================================================== */
+
+:root {
+  --clinica-primaria: #0d9488;
+  --clinica-primaria-escura: #0f766e;
+  --clinica-primaria-clara: #ccfbf1;
+  --clinica-sidebar: #0f172a;
+  --clinica-sidebar-texto: #cbd5e1;
+  --clinica-fundo: #f1f5f9;
+  --clinica-borda: #e2e8f0;
+}
+
+/* --- ajustes do Bootstrap para a paleta da clinica --- */
+.btn-primary {
+  --bs-btn-bg: var(--clinica-primaria);
+  --bs-btn-border-color: var(--clinica-primaria);
+  --bs-btn-hover-bg: var(--clinica-primaria-escura);
+  --bs-btn-hover-border-color: var(--clinica-primaria-escura);
+  --bs-btn-active-bg: var(--clinica-primaria-escura);
+  --bs-btn-active-border-color: var(--clinica-primaria-escura);
+  --bs-btn-disabled-bg: var(--clinica-primaria);
+  --bs-btn-disabled-border-color: var(--clinica-primaria);
+  --bs-btn-focus-shadow-rgb: 13, 148, 136;
+}
+.bg-primary { background-color: var(--clinica-primaria) !important; }
+.text-primary { color: var(--clinica-primaria) !important; }
+.border-primary { border-color: var(--clinica-primaria) !important; }
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--clinica-primaria);
+  box-shadow: 0 0 0 .2rem rgba(13, 148, 136, .15);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link.active {
+  background-color: var(--clinica-primaria);
+}
+
+.card {
+  border: 1px solid var(--clinica-borda);
+  border-radius: .75rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+.table thead th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  border-bottom-width: 1px;
+}
+
+.table tbody tr:hover { background-color: #f8fafc; }
+
+/* --- estrutura geral: menu lateral + conteudo --- */
+body {
+  background-color: var(--clinica-fundo);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+#app-layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--clinica-sidebar);
+  color: var(--clinica-sidebar-texto);
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1045;
+  transition: transform .25s ease;
+}
+
+.sidebar .marca {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.sidebar .marca i { font-size: 1.6rem; color: var(--clinica-primaria); }
+.sidebar .marca strong { color: #fff; font-size: 1rem; display: block; }
+.sidebar .marca small { color: #94a3b8; font-size: .72rem; }
+
+.menu-lateral { list-style: none; margin: 0; padding: .75rem 0; flex: 1; overflow-y: auto; }
+.menu-lateral .titulo-secao {
+  padding: .9rem 1.25rem .35rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #64748b;
+}
+.menu-lateral a {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .62rem 1.25rem;
+  color: var(--clinica-sidebar-texto);
+  text-decoration: none;
+  font-size: .92rem;
+  border-left: 3px solid transparent;
+}
+.menu-lateral a:hover { background: rgba(255, 255, 255, .06); color: #fff; }
+.menu-lateral a.ativo {
+  background: rgba(13, 148, 136, .16);
+  color: #fff;
+  border-left-color: var(--clinica-primaria);
+  font-weight: 600;
+}
+.menu-lateral a i { font-size: 1.05rem; width: 1.2rem; text-align: center; }
+
+.sidebar .rodape-menu {
+  padding: .9rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  font-size: .8rem;
+}
+
+.conteudo { margin-left: 260px; flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--clinica-borda);
+  padding: .9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+.titulo-pagina { font-size: 1.25rem; font-weight: 700; margin: 0; color: #0f172a; }
+.titulo-pagina small { display: block; font-size: .78rem; font-weight: 400; color: #64748b; }
+
+.area-conteudo { padding: 1.5rem; }
+
+.usuario-box { display: flex; align-items: center; gap: .75rem; }
+.usuario-logado {
+  background: var(--clinica-primaria-clara);
+  color: var(--clinica-primaria-escura);
+  border-radius: 2rem;
+  padding: .3rem .85rem;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+/* --- telas de login --- */
+.tela-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--clinica-sidebar) 0%, #155e75 55%, var(--clinica-primaria-escura) 100%);
+  padding: 1rem;
+}
+.cartao-login {
+  width: 100%;
+  max-width: 410px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 45px rgba(2, 44, 34, .35);
+  padding: 2rem;
+}
+.cartao-login .logo {
+  width: 58px; height: 58px;
+  border-radius: 1rem;
+  background: var(--clinica-primaria);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 1rem;
+}
+
+/* --- paineis / indicadores --- */
+.cartao-indicador .icone {
+  width: 44px; height: 44px;
+  border-radius: .7rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  background: var(--clinica-primaria-clara);
+  color: var(--clinica-primaria-escura);
+}
+.cartao-indicador .valor { font-size: 1.8rem; font-weight: 700; color: #0f172a; }
+.cartao-indicador .rotulo { font-size: .8rem; color: #64748b; text-transform: uppercase; letter-spacing: .04em; }
+
+/* --- diversos --- */
+.badge-status { font-size: .74rem; padding: .35em .6em; }
+.campo-busca { max-width: 320px; }
+.acoes-tabela { display: flex; gap: .35rem; justify-content: flex-end; }
+.modal-header { background: var(--clinica-fundo); }
+.toast-container { z-index: 1090; }
+.empty-state { text-align: center; padding: 2.5rem 1rem; color: #94a3b8; }
+.empty-state i { font-size: 2.5rem; display: block; margin-bottom: .5rem; }
+
+.botao-menu { display: none; }
+
+/* --- telas pequenas: menu lateral recolhivel --- */
+@media (max-width: 991.98px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.aberta { transform: translateX(0); box-shadow: 0 0 40px rgba(0, 0, 0, .4); }
+  .conteudo { margin-left: 0; }
+  .botao-menu { display: inline-flex; }
+  .area-conteudo { padding: 1rem; }
+  .campo-busca { max-width: 100%; }
+}

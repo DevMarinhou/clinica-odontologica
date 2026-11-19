@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Odontológica — Painel</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <!-- ================= TELA DE LOGIN ================= -->
+  <div class="tela-login" id="tela-login">
+    <div class="cartao-login">
+      <div class="logo"><i class="bi bi-heart-pulse"></i></div>
+      <h1 class="h4 text-center mb-1">Clínica Odontológica</h1>
+      <p class="text-center text-secondary mb-4">Sistema de gestão da clínica</p>
+
+      <div class="alert alert-danger d-none" id="alerta-login" role="alert"></div>
+
+      <form id="formulario-login" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="nome_usuario">Usuário</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input id="nome_usuario" name="nome_usuario" class="form-control"
+                   placeholder="admin" autocomplete="username" required autofocus>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="form-label" for="senha">Senha</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input id="senha" name="senha" type="password" class="form-control"
+                   placeholder="Senha" autocomplete="current-password" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+      </form>
+
+      <p class="text-center text-secondary small mt-3 mb-0">
+        Acesso de demonstração: <strong>admin</strong> / <strong>senha123</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= PAINEL PRINCIPAL ================= -->
+  <div id="tela-painel" class="d-none">
+    <div id="app-layout">
+      <aside id="sidebar" class="sidebar"></aside>
+
+      <div class="conteudo">
+        <header class="topbar">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-secondary botao-menu" id="btn-menu">
+              <i class="bi bi-list"></i>
+            </button>
+            <h1 id="titulo-pagina" class="titulo-pagina"></h1>
+          </div>
+          <div class="usuario-box">
+            <span id="usuario-logado" class="usuario-logado"></span>
+            <button class="btn btn-sm btn-outline-secondary" id="btn-sair">
+              <i class="bi bi-box-arrow-right"></i> Sair
+            </button>
+          </div>
+        </header>
+
+        <main class="area-conteudo">
+
+          <!-- indicadores principais -->
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-lg">
+              <div class="card cartao-indicador h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icone"><i class="bi bi-people"></i></div>
+                  <div>
+                    <div class="valor" id="total-pacientes">0</div>
+                    <div class="rotulo">Pacientes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg">
+              <div class="card cartao-indicador h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icone"><i class="bi bi-person-badge"></i></div>
+                  <div>
+                    <div class="valor" id="total-dentistas">0</div>
+                    <div class="rotulo">Dentistas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg">
+              <div class="card cartao-indicador h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icone"><i class="bi bi-clipboard2-pulse"></i></div>
+                  <div>
+                    <div class="valor" id="total-procedimentos">0</div>
+                    <div class="rotulo">Procedimentos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg">
+              <div class="card cartao-indicador h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icone"><i class="bi bi-calendar-week"></i></div>
+                  <div>
+                    <div class="valor" id="total-consultas">0</div>
+                    <div class="rotulo">Consultas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg">
+              <div class="card cartao-indicador h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                  <div class="icone"><i class="bi bi-shield-lock"></i></div>
+                  <div>
+                    <div class="valor" id="total-usuarios">0</div>
+                    <div class="rotulo">Usuários</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <!-- indicadores secundarios + status -->
+            <div class="col-lg-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h6 class="text-secondary text-uppercase small">Consultas de hoje</h6>
+                  <div class="valor fs-3 fw-bold" id="consultas-hoje">0</div>
+                </div>
+              </div>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h6 class="text-secondary text-uppercase small">Consultas pendentes</h6>
+                  <div class="valor fs-3 fw-bold" id="consultas-pendentes">0</div>
+                </div>
+              </div>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h6 class="text-secondary text-uppercase small">Faturamento concluído</h6>
+                  <div class="valor fs-4 fw-bold text-primary" id="faturamento">R$ 0,00</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header bg-white">
+                  <h6 class="mb-0">Consultas por status</h6>
+                </div>
+                <ul class="list-unstyled mb-0 px-3" id="lista-status"></ul>
+              </div>
+            </div>
+
+            <!-- próximas consultas -->
+            <div class="col-lg-8">
+              <div class="card h-100">
+                <div class="card-header bg-white">
+                  <h6 class="mb-0">Próximas consultas agendadas</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th>Data</th>
+                        <th>Paciente</th>
+                        <th>Dentista</th>
+                        <th>Procedimento</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="corpo-proximas"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/painel.js"></script>
+</body>
+</html>
