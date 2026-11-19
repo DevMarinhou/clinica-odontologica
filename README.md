@@ -1,9 +1,11 @@
 # 🦷 Clínica Odontológica — Sistema Web
 
-Aplicação WEB completa integrada ao banco de dados MySQL — atividade da
-disciplina. **Sistema pronto e funcionando:** banco de dados, API REST e
-interface web (HTML + CSS + Bootstrap + JavaScript), servidos juntos em um
-único endereço.
+> **Projeto acadêmico** — Atividade "Aplicação WEB integrada com Banco de Dados"  
+> **Tema sorteado:** Clínica Odontológica  
+> **Dupla:** Dev Marinhou (back-end) + 01morais (front-end)  
+> **Curso/Disciplina:** Desenvolvimento Web / Banco de Dados
+
+Aplicação WEB completa integrada ao banco de dados MySQL. **Sistema pronto e funcionando:** banco de dados, API REST e interface web (HTML + CSS + Bootstrap + JavaScript), servidos juntos em um único endereço.
 
 ## ⚡ Iniciar em 3 passos
 
