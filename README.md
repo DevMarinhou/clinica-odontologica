@@ -43,7 +43,6 @@ API REST em `/api/...` — contrato completo em
 | [docs/03-guia-integracao-front-end.md](docs/03-guia-integracao-front-end.md) | **Contrato da API** (endpoints, campos, exemplos) |
 | [docs/04-relatorio.md](docs/04-relatorio.md) | Relatório: o que, como e por que foi feito |
 | [docs/05-guia-do-front-end.md](docs/05-guia-do-front-end.md) | **Guia da interface** (telas, estrutura, personalização) |
-| [docs/06-resumo-para-apresentacao.md](docs/06-resumo-para-apresentacao.md) | **Resumo/roteiro da apresentação** (10 min, com o que falar) |
 | [database/DER.md](database/DER.md) | Diagrama entidade-relacionamento |
 
 ## 🗄️ Banco de dados
